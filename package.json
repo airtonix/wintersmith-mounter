@@ -24,13 +24,16 @@
   },
   "devDependencies": {
     "coffee-script": ">=1.3",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "vows": "~0.7.0",
+    "wintersmith": "~2.0.10"
   },
   "peerDependencies": {
     "wintersmith": "~2.0.5"
   },
   "scripts": {
-    "prepublish": "./bin/compile"
+    "prepublish": "./bin/compile",
+    "test": "vows ./test/* --spec"
   },
   "engines": {
     "node": "*"
