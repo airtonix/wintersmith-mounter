@@ -3,6 +3,8 @@
 		"./../index-dev.js"
 	],
 	"bower": {
-		"root": "./bower_components"
+		"mounts":{
+			"/wintersmith-mounter/": "../lib"
+		}
 	}
 }
