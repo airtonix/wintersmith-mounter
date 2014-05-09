@@ -8,27 +8,27 @@ module.exports = (env, done) ->
 	defaults =
 		options:
 			allow: /(\.js|\.coffee|\.map)$/
-		mounts:
-			'/vendor/':
-				src: './bower_components'
+		mounts: {}
 
-	options = _.merge defaults, env.config.bower or {}
+	options = _.merge defaults, env.config.mounter or {}
 
 
 	class MounterGenerator
 
-		constructor: (contents, options, callback) ->
+		constructor: (contents, callback) ->
 			tree = []
-			for key, value in options.mounts
+
+			_.forEach options.mounts, (value, mount) =>
 				config = _.merge defaults.options, value
 				files = @discover config
-				tree.push @mount files
+				mountedTree = @mount mount, files,  config
+				tree = tree.concat mountedTree
 
 			callback null, mounts: tree
 
-		discover: (options) ->
-			target = path.resolve env.workDir, options.src
-			pattern = new RegExp options.allow
+		discover: (config) ->
+			target = path.resolve env.workDir, config.src
+			pattern = new RegExp config.allow
 			output = []
 			diveSync target, (err, file) =>
 				throw err if err
@@ -36,18 +36,17 @@ module.exports = (env, done) ->
 					output.push file
 			output
 
-		mount: (options, files) ->
+		mount: (mount, files, config) ->
 			output = {}
 			for file in files
 				relative = file.replace env.workDir, '.'
-				mounted = path.join options.mount, relative.replace options.root, ''
+				mounted = path.join mount, relative.replace config.src, ''
 				full = path.resolve env.workDir, relative
 				output[mounted] = new env.plugins.StaticFile
 					relative: mounted
 					full: full
 
 
-	env.registerGenerator 'bower', (contents, callback) ->
-		new BowerGenerator(contents, options, callback)
+	env.registerGenerator 'mounter', (contents, callback) -> new MounterGenerator(contents, callback)
 
 	done()

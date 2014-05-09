@@ -4,6 +4,7 @@
   "homepage": "https://github.com/airtonix/wintersmith-mounter",
   "description": "A wintersmith generator that mounts your external files into your content tree.",
   "readmeFilename": "README.md",
+  "main": "./index-dev.js",
   "author": {
     "name": "Zenobius Jiricek"
   },
@@ -22,7 +23,8 @@
     "diveSync": "~0.2.1"
   },
   "devDependencies": {
-    "coffee-script": ">=1.3"
+    "coffee-script": ">=1.3",
+    "lodash": "~2.4.1"
   },
   "peerDependencies": {
     "wintersmith": "~2.0.5"
