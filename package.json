@@ -1,0 +1,36 @@
+{
+  "name": "wintersmith-mounter",
+  "version": "0.0.1",
+  "homepage": "https://github.com/airtonix/wintersmith-mounter",
+  "description": "A wintersmith generator that mounts your external files into your content tree.",
+  "readmeFilename": "README.md",
+  "author": {
+    "name": "Zenobius Jiricek"
+  },
+  "keywords": [
+    "wintersmith",
+    "wintersmith-plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/airtonix/wintersmith-mounter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/airtonix/wintersmith-mounter/issues"
+  },
+  "dependencies": {
+    "diveSync": "~0.2.1"
+  },
+  "devDependencies": {
+    "coffee-script": ">=1.3"
+  },
+  "peerDependencies": {
+    "wintersmith": "~2.0.5"
+  },
+  "scripts": {
+    "prepublish": "./bin/compile"
+  },
+  "engines": {
+    "node": "*"
+  }
+}
